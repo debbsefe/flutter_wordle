@@ -41,5 +41,5 @@ jobs:
       - uses: VeryGoodOpenSource/very_good_coverage@v1.2.0
         with:
           path: "./coverage/lcov.info"
-          min_coverage: 60
-          exclude: "**/*_observer.dart **/change.dart **/*_notifier.dart"
+          min_coverage: 20
+          exclude: "**/*_notifier.dart **/mocks.dart **/injection.dart **/gr.dart **/g.dart"
