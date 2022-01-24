@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:wordle/dependency_injection.dart';
 
 import '../cache/app_cache.dart';
-import '../utils/strings.dart';
+import 'package:wordle/core/utils/strings.dart';
 
 final themeProvider = StateNotifierProvider<CustomTheme, ThemeData>((ref) {
   return di<CustomTheme>();
@@ -39,13 +39,17 @@ class CustomTheme extends StateNotifier<ThemeData> {
   ///theme data
 
   static ThemeData lightThemeData = ThemeData(
-      primarySwatch: Colors.blue,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      fontFamily: Strings.fontDmSans,
-      scaffoldBackgroundColor: scaffoldLight,
-      brightness: Brightness.light,
-      primaryColor: primaryColor,
-      textTheme: lightTextTheme);
+    primarySwatch: Colors.blue,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    fontFamily: Strings.fontDmSans,
+    scaffoldBackgroundColor: scaffoldLight,
+    brightness: Brightness.light,
+    primaryColor: primaryColor,
+    textTheme: lightTextTheme,
+    hoverColor: Colors.transparent,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+  );
 
   static ThemeData darkThemeData = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -55,9 +59,56 @@ class CustomTheme extends StateNotifier<ThemeData> {
     brightness: Brightness.dark,
     primaryColor: scaffoldLight,
     textTheme: darkTextTheme,
+    hoverColor: Colors.transparent,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
   );
 
-  static TextTheme darkTextTheme = const TextTheme();
+  static TextTheme darkTextTheme = const TextTheme(
+    headline1: headline1Dark,
+    headline2: headline2Dark,
+    headline6: headline6Dark,
+  );
 
-  static TextTheme lightTextTheme = const TextTheme();
+  static TextTheme lightTextTheme = const TextTheme(
+    headline1: headline1Light,
+    headline2: headline2Light,
+    headline6: headline6Light,
+  );
+
+  static const TextStyle headline1Light = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 32,
+    color: Colors.black,
+  );
+
+  static const TextStyle headline1Dark = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 32,
+    color: Colors.grey,
+  );
+
+  static const TextStyle headline2Light = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 18,
+    color: Colors.black,
+  );
+
+  static const TextStyle headline2Dark = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 18,
+    color: Colors.white,
+  );
+
+  static const TextStyle headline6Light = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+    color: Colors.black,
+  );
+
+  static const TextStyle headline6Dark = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+    color: Colors.white,
+  );
 }

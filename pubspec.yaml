@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^1.0.3
   get_it: ^7.2.0
+  go_router: ^3.0.1
   injectable: ^1.5.3
   mockito: ^5.0.17
   shared_preferences: ^2.0.12
@@ -69,9 +70,9 @@ flutter:
     - family: DmSans
       fonts:
         - asset: assets/fonts/DMSans.ttf
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+    - family: MyFlutterApp
+      fonts:
+        - asset: assets/fonts/MyFlutterApp.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
