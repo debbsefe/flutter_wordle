@@ -12,12 +12,13 @@ class HeaderWidget extends StatelessWidget {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
               'Wordle'.toUpperCase(),
               style: context.textTheme.headline1,
             ),
+            const SizedBox(width: 200),
             IconButton(
                 onPressed: () async {
                   context.push('/settings');

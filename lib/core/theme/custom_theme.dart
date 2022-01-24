@@ -39,13 +39,17 @@ class CustomTheme extends StateNotifier<ThemeData> {
   ///theme data
 
   static ThemeData lightThemeData = ThemeData(
-      primarySwatch: Colors.blue,
-      visualDensity: VisualDensity.adaptivePlatformDensity,
-      fontFamily: Strings.fontDmSans,
-      scaffoldBackgroundColor: scaffoldLight,
-      brightness: Brightness.light,
-      primaryColor: primaryColor,
-      textTheme: lightTextTheme);
+    primarySwatch: Colors.blue,
+    visualDensity: VisualDensity.adaptivePlatformDensity,
+    fontFamily: Strings.fontDmSans,
+    scaffoldBackgroundColor: scaffoldLight,
+    brightness: Brightness.light,
+    primaryColor: primaryColor,
+    textTheme: lightTextTheme,
+    hoverColor: Colors.transparent,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
+  );
 
   static ThemeData darkThemeData = ThemeData(
     visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -55,6 +59,9 @@ class CustomTheme extends StateNotifier<ThemeData> {
     brightness: Brightness.dark,
     primaryColor: scaffoldLight,
     textTheme: darkTextTheme,
+    hoverColor: Colors.transparent,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
   );
 
   static TextTheme darkTextTheme = const TextTheme(

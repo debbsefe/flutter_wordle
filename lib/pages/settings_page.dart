@@ -28,9 +28,6 @@ class SettingsPage extends StatelessWidget {
                     ),
                     const SizedBox(width: 200),
                     IconButton(
-                        hoverColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
                         onPressed: () {
                           context.pop();
                         },
@@ -63,7 +60,6 @@ class DarkModeTile extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
 
     return SwitchListTile(
-      hoverColor: Colors.transparent,
       contentPadding: EdgeInsets.zero,
       value: theme.brightness == Brightness.dark ? true : false,
       title: Text(
