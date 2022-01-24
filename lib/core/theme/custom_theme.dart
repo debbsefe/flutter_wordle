@@ -31,10 +31,12 @@ class CustomTheme extends StateNotifier<ThemeData> {
   }
 
   static const Color scaffoldLight = Color(0xFFFFF9FA);
-  static const Color scaffoldDark = Color(0xFF160105);
+  static const Color scaffoldDark = Color(0xFF0D0D0D);
 
-  ///PRIMARY COLORS, TINTS AND SHADES
+  ///colors
   static const Color primaryColor = Color(0xFF8C1B2F);
+
+  ///theme data
 
   static ThemeData lightThemeData = ThemeData(
       primarySwatch: Colors.blue,
