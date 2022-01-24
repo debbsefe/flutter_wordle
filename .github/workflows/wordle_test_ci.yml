@@ -42,4 +42,4 @@ jobs:
         with:
           path: "./coverage/lcov.info"
           min_coverage: 60
-          exclude: "**/*_notifier.dart **/mocks.dart **/injection.dart **/gr.dart **/g.dart"
+          exclude: "**/*_notifier.dart **/*.mocks.dart **/*.injection.dart **/*.gr.dart **/.g.dart"
