@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wordle/core/theme/current_theme.dart';
 import 'package:wordle/core/theme/custom_theme.dart';
 import 'package:wordle/core/utils/strings.dart';
+import 'package:wordle/my_flutter_app_icons.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -10,27 +12,42 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Settings',
-                style: context.textTheme.headline1,
-              ),
-              IconButton(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  icon: const Icon(
-                    Icons.cancel,
-                    color: Colors.grey,
-                  )),
-            ],
+      body: Container(
+        margin: const EdgeInsets.only(top: 30.0),
+        child: Center(
+          child: SizedBox(
+            width: 500,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Settings'.toUpperCase(),
+                      style: context.textTheme.headline2,
+                    ),
+                    const SizedBox(width: 200),
+                    IconButton(
+                        hoverColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onPressed: () {
+                          context.pop();
+                        },
+                        icon: const Icon(
+                          MyFlutterApp.close,
+                          size: 14,
+                          color: Colors.grey,
+                        )),
+                  ],
+                ),
+                const SizedBox(height: 50),
+                const DarkModeTile(),
+                const Divider(),
+              ],
+            ),
           ),
-          const DarkModeTile(),
-        ],
+        ),
       ),
     );
   }
@@ -46,32 +63,17 @@ class DarkModeTile extends ConsumerWidget {
     final theme = ref.watch(themeProvider);
 
     return SwitchListTile(
+      hoverColor: Colors.transparent,
+      contentPadding: EdgeInsets.zero,
       value: theme.brightness == Brightness.dark ? true : false,
-      title: const Text(
+      title: Text(
         'Dark Mode',
+        style: context.textTheme.headline6,
       ),
       onChanged: (value) {
         handleSwitch(ref: ref, value: getCurrentTheme(value));
       },
     );
-  }
-}
-
-class CurrentTheme {
-  final String name;
-  final ThemeData theme;
-
-  CurrentTheme({required this.name, required this.theme});
-}
-
-CurrentTheme getCurrentTheme(bool value) {
-  switch (value) {
-    case true:
-      return CurrentTheme(
-          name: Strings.darkTheme, theme: CustomTheme.darkThemeData);
-    default:
-      return CurrentTheme(
-          name: Strings.lightTheme, theme: CustomTheme.lightThemeData);
   }
 }
 

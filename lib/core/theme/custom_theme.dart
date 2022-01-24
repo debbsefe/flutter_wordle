@@ -60,11 +60,13 @@ class CustomTheme extends StateNotifier<ThemeData> {
   static TextTheme darkTextTheme = const TextTheme(
     headline1: headline1Dark,
     headline2: headline2Dark,
+    headline6: headline6Dark,
   );
 
   static TextTheme lightTextTheme = const TextTheme(
     headline1: headline1Light,
     headline2: headline2Light,
+    headline6: headline6Light,
   );
 
   static const TextStyle headline1Light = TextStyle(
@@ -81,13 +83,25 @@ class CustomTheme extends StateNotifier<ThemeData> {
 
   static const TextStyle headline2Light = TextStyle(
     fontWeight: FontWeight.w700,
-    fontSize: 24,
+    fontSize: 18,
     color: Colors.black,
   );
 
   static const TextStyle headline2Dark = TextStyle(
     fontWeight: FontWeight.w700,
-    fontSize: 24,
-    color: Colors.grey,
+    fontSize: 18,
+    color: Colors.white,
+  );
+
+  static const TextStyle headline6Light = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+    color: Colors.black,
+  );
+
+  static const TextStyle headline6Dark = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 16,
+    color: Colors.white,
   );
 }
