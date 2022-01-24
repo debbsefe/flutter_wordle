@@ -1,10 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wordle/core/cache/app_cache.dart';
-
-class MockSharedPreferences extends Mock implements SharedPreferences {}
+import 'package:wordle/mock_objects.mocks.dart';
 
 void main() {
   late AppCacheImpl cache;
