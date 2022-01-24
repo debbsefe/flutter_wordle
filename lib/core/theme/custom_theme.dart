@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:wordle/dependency_injection.dart';
 
 import '../cache/app_cache.dart';
-import '../utils/strings.dart';
+import 'package:wordle/core/utils/strings.dart';
 
 final themeProvider = StateNotifierProvider<CustomTheme, ThemeData>((ref) {
   return di<CustomTheme>();
@@ -57,7 +57,37 @@ class CustomTheme extends StateNotifier<ThemeData> {
     textTheme: darkTextTheme,
   );
 
-  static TextTheme darkTextTheme = const TextTheme();
+  static TextTheme darkTextTheme = const TextTheme(
+    headline1: headline1Dark,
+    headline2: headline2Dark,
+  );
 
-  static TextTheme lightTextTheme = const TextTheme();
+  static TextTheme lightTextTheme = const TextTheme(
+    headline1: headline1Light,
+    headline2: headline2Light,
+  );
+
+  static const TextStyle headline1Light = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 32,
+    color: Colors.black,
+  );
+
+  static const TextStyle headline1Dark = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 32,
+    color: Colors.grey,
+  );
+
+  static const TextStyle headline2Light = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+    color: Colors.black,
+  );
+
+  static const TextStyle headline2Dark = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+    color: Colors.grey,
+  );
 }
