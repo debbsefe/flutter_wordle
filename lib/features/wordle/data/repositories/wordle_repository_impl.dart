@@ -11,4 +11,9 @@ class WordleRepositoryImpl implements WordleRepository {
   Future<String> fetchWordForToday() async {
     return await localDataSource.fetchWordForToday();
   }
+
+  @override
+  Future<bool> isWordInDatabase(String word) async {
+    return await localDataSource.isWordInDatabase(word);
+  }
 }
