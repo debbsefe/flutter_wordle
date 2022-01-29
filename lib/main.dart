@@ -10,6 +10,7 @@ void main() async {
 
   //initialize dependency injection
   await init(Environment.prod);
+
   runApp(const ProviderScope(child: App()));
 }
 
@@ -19,7 +20,6 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ref.watch(themeProvider);
-
     return MaterialApp.router(
       title: 'Wordle',
       theme: theme,

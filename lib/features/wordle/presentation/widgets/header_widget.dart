@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wordle/core/utils/strings.dart';
+import 'package:wordle/core/utils/extensions.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({
