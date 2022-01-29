@@ -3,12 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wordle/core/theme/current_theme.dart';
 import 'package:wordle/core/theme/custom_theme.dart';
-import 'package:wordle/core/utils/strings.dart';
+import 'package:wordle/core/utils/extensions.dart';
 import 'package:wordle/my_flutter_app_icons.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +27,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                     const SizedBox(width: 200),
                     IconButton(
-                        onPressed: () {
+                        onPressed: () async {
                           context.pop();
                         },
                         icon: const Icon(

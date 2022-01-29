@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:wordle/pages/homepage.dart';
-import 'package:wordle/pages/settings_page.dart';
+
+import 'features/wordle/presentation/pages/homepage.dart';
+import 'features/wordle/presentation/pages/settings_page.dart';
 
 final router = GoRouter(
   routes: [
