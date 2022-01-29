@@ -62,8 +62,9 @@ class SelectedLettersViewModel extends ChangeNotifier {
   }
 
   setKeyBoardColor(Color color, String letter) {
-    var keyBoardIndex = _keyBoardCharacters.indexWhere(
-        (element) => element.key.toLowerCase() == letter.toLowerCase());
+    var keyBoardIndex = _keyBoardCharacters.indexWhere((element) {
+      return element.key.toLowerCase() == letter.toLowerCase();
+    });
 
     if (_keyBoardCharacters[keyBoardIndex].color == Colors.grey) {
       _keyBoardCharacters[keyBoardIndex].color = color;

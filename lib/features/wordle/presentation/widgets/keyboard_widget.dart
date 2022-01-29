@@ -5,6 +5,7 @@ import 'package:wordle/features/wordle/data/models/keyboard_model.dart';
 import 'package:wordle/features/wordle/presentation/view_models/selected_letters_view_model.dart';
 import 'package:wordle/features/wordle/presentation/view_models/valid_word_view_model.dart';
 import 'package:wordle/features/wordle/presentation/view_models/word_today_view_model.dart';
+import 'package:wordle/features/wordle/presentation/widgets/keyboard_letter_widget.dart';
 
 class KeyboardWidget extends ConsumerWidget {
   const KeyboardWidget({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class KeyboardWidget extends ConsumerWidget {
                       onTap: () {
                         onKeyTapped(ref, e);
                       },
-                      child: _buildKeyboardItem(e, context));
+                      child: KeyBoardLetterWidget(index: e));
                 }).toList(),
               ),
             ),
@@ -37,7 +38,7 @@ class KeyboardWidget extends ConsumerWidget {
                       onTap: () {
                         onKeyTapped(ref, e);
                       },
-                      child: _buildKeyboardItem(e, context));
+                      child: KeyBoardLetterWidget(index: e));
                 }).toList(),
               ),
             ),
@@ -49,7 +50,7 @@ class KeyboardWidget extends ConsumerWidget {
                       onTap: () {
                         onKeyTapped(ref, e);
                       },
-                      child: _buildKeyboardItem(e, context));
+                      child: KeyBoardLetterWidget(index: e));
                 }).toList(),
               ),
             )
@@ -69,6 +70,10 @@ class KeyboardWidget extends ConsumerWidget {
 
   void enterKeyTapped(WidgetRef ref) async {
     var fiveWords = ref.read(selectLettersProvider).firstFiveLetters;
+    if (fiveWords.length < 5) {
+      //TODO: show error
+      return;
+    }
 
     var isValidWord = await ref
         .read(validWordProvider.notifier)
@@ -85,7 +90,7 @@ class KeyboardWidget extends ConsumerWidget {
           .read(selectLettersProvider.notifier)
           .modify(start, fiveWords, wordForToday);
     } else {
-      // print('not a valid word');
+      //TODO: show error
     }
   }
 
@@ -95,47 +100,5 @@ class KeyboardWidget extends ConsumerWidget {
 
   void anyKeyTapped(WidgetRef ref, KeyBoardModel model) {
     ref.read(selectLettersProvider.notifier).set(model.key);
-  }
-
-  Widget _buildKeyboardItem(KeyBoardModel index, BuildContext context) {
-    return index.key == 'ENTER'
-        ? Container(
-            decoration: BoxDecoration(
-                color: index.color, borderRadius: BorderRadius.circular(5)),
-            margin: const EdgeInsets.all(3),
-            height: 60,
-            width: 65,
-            child: Center(
-                child: Text(
-              index.key,
-              style: context.textTheme.headline6?.copyWith(color: Colors.white),
-            )),
-          )
-        : index.key == 'DELETE'
-            ? Container(
-                decoration: BoxDecoration(
-                    color: index.color, borderRadius: BorderRadius.circular(5)),
-                margin: const EdgeInsets.all(3),
-                height: 60,
-                width: 65,
-                child: const Center(
-                    child: Icon(
-                  Icons.cancel_presentation,
-                  color: Colors.white,
-                )),
-              )
-            : Container(
-                decoration: BoxDecoration(
-                    color: index.color, borderRadius: BorderRadius.circular(5)),
-                margin: const EdgeInsets.all(3),
-                height: 60,
-                width: 50,
-                child: Center(
-                    child: Text(
-                  index.key,
-                  style: context.textTheme.headline6
-                      ?.copyWith(color: Colors.white),
-                )),
-              );
   }
 }
