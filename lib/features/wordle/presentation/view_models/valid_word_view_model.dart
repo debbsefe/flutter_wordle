@@ -9,8 +9,9 @@ class ValidWordViewModel extends StateNotifier<bool?> {
 
   ValidWordViewModel(this.repository) : super(null);
 
-  void isValidWord(String value) async {
+  Future<bool?> isValidWord(String value) async {
     state = await repository.isWordInDatabase(value);
+    return state;
   }
 }
 

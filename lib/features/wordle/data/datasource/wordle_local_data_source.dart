@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+import 'package:wordle/core/cache/app_cache.dart';
 import 'package:wordle/core/utils/extensions.dart';
 import 'package:wordle/core/utils/strings.dart';
 
@@ -19,12 +20,21 @@ abstract class WordleLocalDataSource {
 
 @LazySingleton(as: WordleLocalDataSource)
 class WordleLocalDataSourceImpl implements WordleLocalDataSource {
+  final AppCache appCache;
+
+  WordleLocalDataSourceImpl(this.appCache);
   @override
   Future<String> fetchWordForToday() async {
-    final allWords = await fetchAllWords();
+    final cachedWord = appCache.retrieveString(Strings.wordForTheDay);
+    if (cachedWord != null) {
+      return cachedWord;
+    } else {
+      final allWords = await fetchAllWords();
 
-    var word = allWords.randomItem();
-    return word;
+      var word = allWords.randomItem();
+      appCache.saveString(Strings.wordForTheDay, word);
+      return word;
+    }
   }
 
   @override
