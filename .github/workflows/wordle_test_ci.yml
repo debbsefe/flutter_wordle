@@ -4,6 +4,7 @@ name: ci
 
 on:
   push:
+  pull_request:
 
 # on: push    # Default will running for every branch.
 

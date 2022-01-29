@@ -13,7 +13,8 @@ String wordsModelToJson(List<String> data) =>
 
 abstract class WordleLocalDataSource {
   Future<String> fetchWordForToday();
-  Future<String> fetchAllWords();
+  Future<List<String>> fetchAllWords();
+  Future<bool> isWordInDatabase(String word);
 }
 
 @LazySingleton(as: WordleLocalDataSource)
@@ -22,17 +23,21 @@ class WordleLocalDataSourceImpl implements WordleLocalDataSource {
   Future<String> fetchWordForToday() async {
     final allWords = await fetchAllWords();
 
-    var allWordsList = wordsModelFromJson(allWords);
-
-    var word = allWordsList.randomItem();
+    var word = allWords.randomItem();
     return word;
   }
 
   @override
-  Future<String> fetchAllWords() async {
+  Future<List<String>> fetchAllWords() async {
     final String response =
         await rootBundle.loadString(Strings.fiveLetterWordsJsonPath);
 
-    return response;
+    return wordsModelFromJson(response);
+  }
+
+  @override
+  Future<bool> isWordInDatabase(String word) async {
+    final allWords = await fetchAllWords();
+    return allWords.contains(word.toLowerCase());
   }
 }
