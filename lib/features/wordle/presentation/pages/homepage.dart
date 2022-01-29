@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wordle/core/utils/extensions.dart';
 import 'package:wordle/features/wordle/presentation/view_models/word_today_view_model.dart';
 import 'package:wordle/features/wordle/presentation/widgets/grid_view_widget.dart';
 import 'package:wordle/features/wordle/presentation/widgets/header_widget.dart';
@@ -23,7 +24,6 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      resizeToAvoidBottomInset: true,
       body: Container(
         margin: const EdgeInsets.only(top: 30.0),
         child: Center(
@@ -31,12 +31,12 @@ class _HomePageState extends ConsumerState<HomePage> {
             width: 600,
             child: SingleChildScrollView(
               child: Column(
-                children: const [
-                  HeaderWidget(),
-                  SizedBox(height: 50),
-                  GridViewWidget(),
-                  SizedBox(height: 50),
-                  KeyboardWidget(),
+                children: [
+                  const HeaderWidget(),
+                  SizedBox(height: context.height(0.05)),
+                  const GridViewWidget(),
+                  const SizedBox(height: 0.15),
+                  const KeyboardWidget(),
                 ],
               ),
             ),

@@ -4,7 +4,7 @@ import 'package:wordle/features/wordle/domain/repositories/wordle_repository.dar
 
 @LazySingleton(as: WordleRepository)
 class WordleRepositoryImpl implements WordleRepository {
-  final WordleLocalDataSourceImpl localDataSource;
+  final WordleLocalDataSource localDataSource;
 
   WordleRepositoryImpl(this.localDataSource);
   @override

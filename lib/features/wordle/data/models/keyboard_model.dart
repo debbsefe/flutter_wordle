@@ -37,7 +37,7 @@ const characters = [
   'B',
   'N',
   'M',
-  'CLOSE'
+  'DELETE'
 ];
 
 final keyBoardCharacters = characters.map((character) {
