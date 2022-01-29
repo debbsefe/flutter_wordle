@@ -4,10 +4,6 @@ name: ci
 
 on:
   push:
-    - main
-    - dev
-
-# on: push    # Default will running for every branch.
 
 jobs:
   build:
