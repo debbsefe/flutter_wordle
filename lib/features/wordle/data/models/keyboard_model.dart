@@ -40,6 +40,6 @@ const characters = [
   'DELETE'
 ];
 
-final keyBoardCharacters = characters.map((character) {
+var keyBoardModel = characters.map((character) {
   return KeyBoardModel(key: character);
 }).toList();

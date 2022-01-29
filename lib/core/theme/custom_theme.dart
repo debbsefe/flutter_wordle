@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:injectable/injectable.dart';
+import 'package:wordle/core/utils/strings.dart';
 import 'package:wordle/dependency_injection.dart';
 
 import '../cache/app_cache.dart';
-import 'package:wordle/core/utils/strings.dart';
 
 final themeProvider = StateNotifierProvider<CustomTheme, ThemeData>((ref) {
   return di<CustomTheme>();
@@ -34,7 +34,10 @@ class CustomTheme extends StateNotifier<ThemeData> {
   static const Color scaffoldDark = Color(0xFF0D0D0D);
 
   ///colors
-  static const Color primaryColor = Color(0xFF8C1B2F);
+  static const Color primaryColor = Colors.blue;
+  static const Color notInWord = Color(0xFF3a3a3c);
+  static const Color mayBeInWord = Color(0xFFb49f3a);
+  static const Color isInWord = Color(0xFF538D4E);
 
   ///theme data
 

@@ -2,14 +2,19 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:injectable/injectable.dart';
+import 'package:wordle/core/theme/custom_theme.dart';
 import 'package:wordle/dependency_injection.dart';
+import 'package:wordle/features/wordle/data/models/keyboard_model.dart';
 
 @LazySingleton()
 class SelectedLettersViewModel extends ChangeNotifier {
   final _firstFiveLetters = <String>[];
   final _allLetters = <AllLettersModel>[];
+  final List<KeyBoardModel> _keyBoardCharacters = keyBoardModel;
+
   List<String> get firstFiveLetters => _firstFiveLetters;
   List<AllLettersModel> get allLetters => _allLetters;
+  List<KeyBoardModel> get keyBoardCharacters => _keyBoardCharacters;
 
   void set(String value) async {
     if (_firstFiveLetters.length < 5) {
@@ -19,20 +24,23 @@ class SelectedLettersViewModel extends ChangeNotifier {
     }
   }
 
-  void modify(int start, int end, List<String> letters) {
+  void modify(int start, List<String> letters, String wordForToday) {
     letters.mapIndexed((index, value) {
       var letter = value.toLowerCase();
-      var word = 'rooms'.split('');
+      var word = wordForToday.split('');
       Color color;
       if (word.contains(letter) && word[index] == letter) {
-        color = Colors.green;
-        _allLetters[index + start].color = Colors.green;
+        color = CustomTheme.isInWord;
+        _allLetters[index + start].color = color;
+        setKeyBoardColor(color, letter);
       } else if (word.contains(letter)) {
-        color = Colors.yellow;
+        color = CustomTheme.mayBeInWord;
         _allLetters[index + start].color = color;
+        setKeyBoardColor(color, letter);
       } else {
-        color = Colors.grey;
+        color = CustomTheme.notInWord;
         _allLetters[index + start].color = color;
+        setKeyBoardColor(color, letter);
       }
     }).toList();
     clearFirstFive();
@@ -50,6 +58,16 @@ class SelectedLettersViewModel extends ChangeNotifier {
 
   void clearFirstFive() async {
     _firstFiveLetters.clear();
+    notifyListeners();
+  }
+
+  setKeyBoardColor(Color color, String letter) {
+    var keyBoardIndex = _keyBoardCharacters.indexWhere(
+        (element) => element.key.toLowerCase() == letter.toLowerCase());
+
+    if (_keyBoardCharacters[keyBoardIndex].color == Colors.grey) {
+      _keyBoardCharacters[keyBoardIndex].color = color;
+    }
     notifyListeners();
   }
 }

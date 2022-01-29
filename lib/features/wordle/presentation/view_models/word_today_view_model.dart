@@ -9,8 +9,9 @@ class WordTodayViewModel extends StateNotifier<String> {
 
   WordTodayViewModel(this.repository) : super('');
 
-  void fetchWordForToday() async {
+  Future<String> fetchWordForToday() async {
     state = await repository.fetchWordForToday();
+    return state;
   }
 }
 
