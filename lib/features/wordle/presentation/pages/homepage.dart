@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wordle/widgets/grid_view_widget.dart';
-import 'package:wordle/widgets/header_widget.dart';
-import 'package:wordle/widgets/keyboard_widget.dart';
+import 'package:wordle/features/wordle/presentation/widgets/grid_view_widget.dart';
+import 'package:wordle/features/wordle/presentation/widgets/header_widget.dart';
+import 'package:wordle/features/wordle/presentation/widgets/keyboard_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
