@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:flip_card/flip_card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:injectable/injectable.dart';
@@ -11,10 +12,31 @@ class SelectedLettersViewModel extends ChangeNotifier {
   final _firstFiveLetters = <String>[];
   final _allLetters = <AllLettersModel>[];
   final List<KeyBoardModel> _keyBoardCharacters = keyBoardModel;
+  final _controllers = List.generate(30, (index) => FlipCardController());
+  final _speed = List.generate(30, (index) {
+    var remainder = index % 5;
+    var speed = remainder == 0 ? 1000 : (500 + (remainder * 500));
+    return speed;
+  });
+
+  String? _errorMessage;
+  String? get errorMessage => _errorMessage;
 
   List<String> get firstFiveLetters => _firstFiveLetters;
   List<AllLettersModel> get allLetters => _allLetters;
   List<KeyBoardModel> get keyBoardCharacters => _keyBoardCharacters;
+  List<FlipCardController> get controllers => _controllers;
+  List<int> get speed => _speed;
+
+  void setErrorMessage(String errorMessage) {
+    _errorMessage = errorMessage;
+    notifyListeners();
+
+    Future.delayed(const Duration(milliseconds: 2000), () {
+      _errorMessage = null;
+      notifyListeners();
+    });
+  }
 
   void set(String value) async {
     if (_firstFiveLetters.length < 5) {
@@ -31,14 +53,20 @@ class SelectedLettersViewModel extends ChangeNotifier {
       Color color;
       if (word.contains(letter) && word[index] == letter) {
         color = CustomTheme.isInWord;
+        _controllers[index + start].toggleCard();
+
         _allLetters[index + start].color = color;
         setKeyBoardColor(color, letter);
       } else if (word.contains(letter)) {
         color = CustomTheme.mayBeInWord;
+        _controllers[index + start].toggleCard();
+
         _allLetters[index + start].color = color;
         setKeyBoardColor(color, letter);
       } else {
         color = CustomTheme.notInWord;
+        _controllers[index + start].toggleCard();
+
         _allLetters[index + start].color = color;
         setKeyBoardColor(color, letter);
       }

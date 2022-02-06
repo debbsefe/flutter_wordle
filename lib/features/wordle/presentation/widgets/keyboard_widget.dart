@@ -71,7 +71,7 @@ class KeyboardWidget extends ConsumerWidget {
   void enterKeyTapped(WidgetRef ref) async {
     var fiveWords = ref.read(selectLettersProvider).firstFiveLetters;
     if (fiveWords.length < 5) {
-      //TODO: show error
+      ref.read(selectLettersProvider).setErrorMessage('Not enough letters');
       return;
     }
 
@@ -90,7 +90,7 @@ class KeyboardWidget extends ConsumerWidget {
           .read(selectLettersProvider.notifier)
           .modify(start, fiveWords, wordForToday);
     } else {
-      //TODO: show error
+      ref.read(selectLettersProvider).setErrorMessage('Not in word list');
     }
   }
 
