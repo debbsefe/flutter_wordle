@@ -29,6 +29,7 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.2
   equatable: ^2.0.3
+  flip_card: ^0.6.0
   flutter:
     sdk: flutter
   flutter_riverpod: ^1.0.3
