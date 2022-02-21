@@ -82,7 +82,6 @@ class KeyboardWidget extends ConsumerWidget {
       var allLetters = ref.read(selectLettersProvider).allLetters;
       var wordForToday =
           await ref.read(wordForTodayProvider.notifier).fetchWordForToday();
-
       var end = allLetters.length - 1;
       var start = end - 4;
 

@@ -1,6 +1,7 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wordle/core/responsive_wigdet.dart';
 import 'package:wordle/core/utils/extensions.dart';
 import 'package:wordle/features/wordle/presentation/view_models/selected_letters_view_model.dart';
 
@@ -17,8 +18,12 @@ class _GridViewWidgetState extends ConsumerState<GridViewWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.height(0.4),
-      width: context.width(0.6),
+      height: ResponsiveWidget.isSmallScreen(context)
+          ? context.width(0.4)
+          : context.height(0.5),
+      width: ResponsiveWidget.isSmallScreen(context)
+          ? context.width(0.6)
+          : context.width(0.2),
       child: GridView.count(
         crossAxisSpacing: 7,
         mainAxisSpacing: 7,
@@ -32,8 +37,8 @@ class _GridViewWidgetState extends ConsumerState<GridViewWidget> {
             direction: FlipDirection.VERTICAL,
             flipOnTouch: false,
             front: Container(
-                height: 40,
-                width: 40,
+                height: context.height(0.05),
+                width: context.width(0.05),
                 decoration: BoxDecoration(
                     color: Colors.transparent,
                     border: Border.all(color: Colors.grey.shade800)),
@@ -42,8 +47,8 @@ class _GridViewWidgetState extends ConsumerState<GridViewWidget> {
                   letters.length > e ? letters[e].value! : '',
                 ))),
             back: Container(
-                height: 40,
-                width: 40,
+                height: context.height(0.05),
+                width: context.width(0.05),
                 decoration: BoxDecoration(
                     color: letters.length > e
                         ? letters[e].color

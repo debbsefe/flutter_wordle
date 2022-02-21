@@ -12,8 +12,8 @@ class KeyBoardLetterWidget extends StatelessWidget {
             decoration: BoxDecoration(
                 color: index.color, borderRadius: BorderRadius.circular(5)),
             margin: const EdgeInsets.all(3),
-            height: 60,
-            width: 65,
+            height: context.height(0.07),
+            width: context.width(0.06),
             child: Center(
                 child: Text(
               index.key,
@@ -25,8 +25,8 @@ class KeyBoardLetterWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: index.color, borderRadius: BorderRadius.circular(5)),
                 margin: const EdgeInsets.all(3),
-                height: 60,
-                width: 65,
+                height: context.height(0.07),
+                width: context.width(0.06),
                 child: const Center(
                     child: Icon(
                   Icons.cancel_presentation,
@@ -37,8 +37,8 @@ class KeyBoardLetterWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: index.color, borderRadius: BorderRadius.circular(5)),
                 margin: const EdgeInsets.all(3),
-                height: 60,
-                width: 50,
+                height: context.height(0.07),
+                width: context.width(0.04),
                 child: Center(
                     child: Text(
                   index.key,
