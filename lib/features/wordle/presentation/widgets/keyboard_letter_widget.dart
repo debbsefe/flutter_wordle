@@ -23,7 +23,9 @@ class KeyBoardLetterWidget extends StatelessWidget {
         : index.key == 'DELETE'
             ? Container(
                 decoration: BoxDecoration(
-                    color: index.color, borderRadius: BorderRadius.circular(5)),
+                  color: index.color,
+                  borderRadius: BorderRadius.circular(5),
+                ),
                 margin: const EdgeInsets.all(3),
                 height: context.height(0.07),
                 width: context.width(0.06),
