@@ -1,13 +1,12 @@
 name: ci
 
 on:
-  push:
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    
       - name: "Run tests"
       - uses: debbsefe/flutter_ci_template_action@v1
         with:
