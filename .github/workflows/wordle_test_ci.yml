@@ -13,4 +13,4 @@ jobs:
           java_version: "12.x"
           coverage_path: ./coverage/lcov.info
           min_coverage: 60
-          exclude: "**/*_notifier.dart **/*.mocks.dart **/*.injection.dart **/*.gr.dart **/.g.dart"
+          exclude: "**/*.mocks.dart **/*.injection.dart **/*.gr.dart **/.g.dart"
